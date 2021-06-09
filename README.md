@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Images
+
+### UML Component Diagram 
+<p align="center">
+<img src="public/images/uml_diagram.jpg" width="600" height="300">
+</p>
+
+### Employer Page
+
+<p align="center">
+<img src="public/images/employer_page.jpg">
+</p>
+
 ## Available Scripts
 
 In the project directory, you can run:
