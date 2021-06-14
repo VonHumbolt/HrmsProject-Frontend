@@ -15,7 +15,7 @@ export default function EmployerList() {
     employerService
       .getAllEmployers()
       .then((response) => setEmployers(response.data.data));
-  });
+  }, []);
 
   return (
     <div>
@@ -25,9 +25,9 @@ export default function EmployerList() {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Company Name</Table.HeaderCell>
-            <Table.HeaderCell>Web Site <Icon name="envelope"/> </Table.HeaderCell>
+            <Table.HeaderCell>Web Site <Icon name="world"/> </Table.HeaderCell>
+            <Table.HeaderCell>Email <Icon name="envelope"/> </Table.HeaderCell>
             <Table.HeaderCell>Phone Number <Icon name="phone"/></Table.HeaderCell>
-           
           </Table.Row>
         </Table.Header>
 
@@ -36,6 +36,7 @@ export default function EmployerList() {
                 <Table.Row key={employer.employerId}>
                     <Table.Cell>{employer.companyName}</Table.Cell>
                     <Table.Cell>{employer.webSite}</Table.Cell>
+                    <Table.Cell>{employer.email}</Table.Cell>
                     <Table.Cell>{employer.phoneNumber}</Table.Cell>
                 </Table.Row>
             ))}

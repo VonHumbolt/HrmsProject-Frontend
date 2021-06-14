@@ -1,44 +1,101 @@
-import React from "react";
-import { Container, Divider, Header } from "semantic-ui-react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import { Container, Divider, Header, Segment, Icon, Label, Grid, GridColumn, Rating } from "semantic-ui-react";
+import JobSeekerService from "../services/jobSeekerService";
+import ResumeService from "../services/resumeService";
 
 export default function JobSeekerDetail() {
+  let { id } = useParams();
+
+  const [jobSeeker, setJobSeeker] = useState({});
+  const [jobSeekerResume, setJobSeekerResume] = useState({});
+
+  useEffect(() => {
+    let jobSeekerService = new JobSeekerService();
+    jobSeekerService
+      .getJobSeekerByJobSeekerId(id)
+      .then((response) => setJobSeeker(response.data.data));
+  }, []);
+
+  useEffect(() => {
+    let resumeService = new ResumeService();
+    resumeService
+      .getResumeByJobSeekerId(id)
+      .then((response) => setJobSeekerResume(response.data.data));
+
+  }, []);
+
   return (
     <div>
-      <Container text>
-        <Header as="h2" textAlign="center">
-          Header
-        </Header>
-        <Divider />
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque
-          penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-          Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-          aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-          imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede link
-          mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
-          semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-          porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-          dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
-          ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam
-          ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque
-          penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-          Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-          aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-          imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede link
-          mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
-          semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-          porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-          dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
-          ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam
-          ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
-        </p>
+      <Header as="h2" textAlign="center">
+        {jobSeeker.firstName} {jobSeeker.lastName}
+      </Header>
+      
+      <Divider horizontal>
+        <Header as="h4">{jobSeeker.jobPositionName}</Header>
+      </Divider>
+      
+      <Container textAlign="left">
+        <Segment>
+          <Grid.Row>
+            <GridColumn width={12}>
+                <Header as="h4">About Me <Icon name="hand peace outline"/></Header>
+            </GridColumn>
+            <GridColumn width={4}>
+            <Label as='a' color='orange' ribbon='right' as={NavLink} to={`/resumes/${id}`}>
+                  Click to See Cv
+            </Label>
+            </GridColumn>
+          </Grid.Row>
+          <Container text>
+          <p style={{fontSize:14}}>
+            {jobSeekerResume.coverLetter}
+          </p>
+          </Container>
+        <Divider/>
+          <Header as="h4">Technologies <Icon name="code"/> </Header>
+          <ul>
+            {jobSeekerResume.abilities &&
+              jobSeekerResume.abilities.map((ability) => (
+                <li>{ability.technology}</li>
+              ))}
+          </ul>
+
+          <Divider />
+
+          <Header as="h4">Language <Icon name="language"/></Header>
+          <ul>
+            {jobSeekerResume.languages &&
+              jobSeekerResume.languages.map((language) => (
+                <li>
+                  {" "}
+                  {language.languageName} <Rating style={{marginLeft:20}} defaultRating={language.languageLevel} maxRating={5} disabled />
+                  
+                </li> 
+              ))}
+          </ul>
+
+          <Divider />
+
+          <Header as="h4">Job Experience <Icon name="briefcase"/> </Header>
+          <ul>
+            {jobSeekerResume.jobExperiences &&
+              jobSeekerResume.jobExperiences.map((jobExp) => (
+                <li>
+                  {" "}
+                  {jobExp.workPlaceName} - {jobExp.position} ({jobExp.startYear}{" "}
+                  - {jobExp.endYear}){" "}
+                </li>
+              ))}
+          </ul>
+
+          <Divider />
+          <Header as="h4">Social <Icon name="github alternate" /></Header>
+          <ul>
+            <li>{jobSeekerResume.githubAddress}</li>
+            <li>{jobSeekerResume.linkedinAdress}</li>
+          </ul>
+        </Segment>
       </Container>
     </div>
   );

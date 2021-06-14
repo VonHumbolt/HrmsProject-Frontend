@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { NavLink } from "react-router-dom";
 import { Segment, Divider, Header, List, ListContent, Icon } from "semantic-ui-react";
 import ResumeService from "../services/resumeService"
 
@@ -9,20 +10,21 @@ export default function ResumeList() {
     useEffect(() => {
         let resumeService = new ResumeService()
         resumeService.getAllResumes().then(response => setResumes(response.data.data))
-    })
+       
+    }, [])
 
   return (
     <div>
-      <Segment>
+      <Segment color="violet">
         <Header as="h2" floated="left">
           Job Seeker's CV
         </Header>
 
         <Divider clearing />
         {resumes.map((resume) => (
-            <Segment key={resume.resumeId}>
+            <Segment key={resume.resumeId} color="grey">
             <Header as="h3">{resume.jobSeeker.firstName + " " + resume.jobSeeker.lastName}</Header>
-            <List>
+            <List as={NavLink} to={`/resumes/${resume.jobSeeker.jobSeekerId}`}>
               <List.Item as="a">
                 <List.Content>
 

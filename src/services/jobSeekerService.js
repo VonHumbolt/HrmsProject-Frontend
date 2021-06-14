@@ -5,6 +5,10 @@ export default class JobSeekerService{
         return axios.get("http://localhost:8080/api/jobSeekers/getAllJobSeekerDtos")
     }
 
+    getJobSeekerByJobSeekerId(jobSeekerId) {
+        return axios.get("http://localhost:8080/api/jobSeekers/getJobSeekerDtoByJobSeekerId?jobSeekerId="+jobSeekerId)
+    }
+
     add(jobSeeker) {
         return axios.post("http://localhost:8080/api/jobSeekers/add",jobSeeker)
     }

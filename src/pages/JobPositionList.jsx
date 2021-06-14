@@ -8,7 +8,7 @@ export default function JobPositionList() {
     useEffect(() => {
         let jobPositionService = new JobPositionService();
         jobPositionService.getAllJobPositions().then(response => setJobPositions(response.data.data))
-    })
+    }, [])
     return (
         <div>
             <Header as="h2" textAlign="left">Job Positions</Header>

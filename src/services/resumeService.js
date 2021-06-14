@@ -6,7 +6,7 @@ export default class ResumeService{
     }
 
     getResumeByJobSeekerId(jobSeekerId) {
-        return axios.get("http://localhost:8080/api/resumes/getResumeByJobSeekerId/?"+jobSeekerId)
+        return axios.get("http://localhost:8080/api/resumes/getResumeByJobSeekerId?jobSeekerId="+jobSeekerId)
     }
 
     add(resume) {
