@@ -4,9 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project Images
 
-### UML Component Diagram 
+### Add Job Advert
 <p align="center">
-<img src="public/images/uml_diagram.jpg" width="600" height="300">
+<img src="public/images/add_job.png">
+</p>
+
+### Resume Page
+<p align="center">
+<img src="public/images/cv.png">
 </p>
 
 ### Employer Page
@@ -14,6 +19,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <p align="center">
 <img src="public/images/employer_page.jpg">
 </p>
+
+### UML Component Diagram 
+<p align="center">
+<img src="public/images/uml_diagram.jpg" width="600" height="300">
+</p>
+
+
 
 ## Available Scripts
 
