@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import { Segment, Divider, Header, List, ListContent, Icon } from "semantic-ui-react";
+import { Segment, Divider, Header, List, Icon } from "semantic-ui-react";
 import ResumeService from "../services/resumeService"
 
 export default function ResumeList() {

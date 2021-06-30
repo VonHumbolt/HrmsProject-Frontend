@@ -5,6 +5,10 @@ export default class JobAdvertService{
         return axios.get("http://localhost:8080/api/jobAdverts/getJobAdvertDetails")
     }
 
+    getPassiveJobAdvertDto() {
+        return axios.get("http://localhost:8080/api/jobAdverts/getPassiveJobAdvertDetails");
+    }
+
     getJobAdvertByJobAdvertId(advertId) {
         return axios.get("http://localhost:8080/api/jobAdverts/getJobAdvertDtoByAdvertId?advertId="+advertId)
     }
@@ -15,6 +19,10 @@ export default class JobAdvertService{
 
     closeJobAdvert(jobAdvert) {
         return axios.post("http://localhost:8080/api/jobAdverts/closeJobAdvert",jobAdvert)
+    }
+
+    approveJobAdvert(jobAdvert) {
+        return axios.post("http://localhost:8080/api/jobAdverts/approveJobAdvert",jobAdvert)
     }
 
     sortedJobAdvertByDeadline() {

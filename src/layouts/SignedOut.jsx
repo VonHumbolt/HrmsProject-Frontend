@@ -1,12 +1,13 @@
 import React from 'react'
-import { Menu, Button, Header } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 
 export default function SignedOut({signedIn}) {
 
     return (
         <div>
-            <Button onClick={signedIn}>Sign In</Button>
-            <Button>Register</Button>
+            <Button size="tiny" onClick={signedIn} style={{marginTop:"5px"}} color="violet">Sign In</Button>
+            <Button size="tiny" as={NavLink} to="/register" color="violet">Register</Button>
         </div>
     )
 }

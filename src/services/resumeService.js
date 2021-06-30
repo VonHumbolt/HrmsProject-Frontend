@@ -9,6 +9,10 @@ export default class ResumeService{
         return axios.get("http://localhost:8080/api/resumes/getResumeByJobSeekerId?jobSeekerId="+jobSeekerId)
     }
 
+    getResumeByResumeId(resumeId) {
+        return axios.get("http://localhost:8080/api/resumes/getResumeByResumeId?resumeId="+ resumeId)
+    }
+
     add(resume) {
         return axios.post("http://localhost:8080/api/resumes/add", resume)
     }

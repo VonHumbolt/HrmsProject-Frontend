@@ -10,6 +10,15 @@ import JobAdvertDetail from '../pages/JobAdvertDetail'
 import Sidebar from './Sidebar'
 import { Route } from 'react-router'
 import ResumeDetail from '../pages/ResumeDetail'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import ConfirmJobAdverts from '../pages/ConfirmJobAdverts'
+import ResumeAdd from '../pages/ResumeAdd'
+import ResumeUpdate from '../pages/ResumeUpdate'
+import EmployerDetail from '../pages/EmployerDetail'
+import EmployerUpdate from '../pages/EmployerUpdate'
+import ConfirmPage from '../pages/ConfirmPage'
+import ConfirmEmployerUpdate from '../pages/ConfirmEmployerUpdate'
 
 export default function Dashboard() {
     return (
@@ -22,13 +31,21 @@ export default function Dashboard() {
                     <Grid.Column width={12}>
                         <Route exact path="/" component={JobAdvertList} />
                         <Route exact path="/jobAdverts" component={JobAdvertList} />
-                        <Route path="/jobAdverts/:id" component={JobAdvertDetail} />
+                        <Route path="/jobAdverts/:advertId" component={JobAdvertDetail} />
                         <Route exact path="/jobSeekers" component={JobSeekerList} />
                         <Route path="/jobSeekers/:id" component={JobSeekerDetail} />
                         <Route exact path="/resumes" component={ResumeList} />
                         <Route exact path="/resumes/:jobSeekerId" component={ResumeDetail} />
                         <Route exact path="/employers" component={EmployerList} />
+                        <Route exact path="/employers/:employerId" component={EmployerDetail} />
+                        <Route exact path="/employers/update/:employerId" component={EmployerUpdate} />
                         <Route exact path="/jobPositions" component={JobPositionList} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route exact path="/resume/add" component={ResumeAdd} />
+                        <Route exact path="/resume/update/:resumeId" component={ResumeUpdate} />
+                        <Route exact path="/confirmPage" component={ConfirmPage} />
+
                     </Grid.Column>
              </Grid.Row>
              </Grid>

@@ -22,7 +22,7 @@ export default function JobSeekerDetail() {
     resumeService
       .getResumeByJobSeekerId(id)
       .then((response) => setJobSeekerResume(response.data.data));
-
+      console.log(jobSeeker)
   }, []);
 
   return (
@@ -49,14 +49,13 @@ export default function JobSeekerDetail() {
           </Grid.Row>
           <Container text>
           <p style={{fontSize:14}}>
-            {jobSeekerResume.coverLetter}
+            {jobSeekerResume?.coverLetter}
           </p>
           </Container>
         <Divider/>
           <Header as="h4">Technologies <Icon name="code"/> </Header>
           <ul>
-            {jobSeekerResume.abilities &&
-              jobSeekerResume.abilities.map((ability) => (
+            {jobSeekerResume?.abilities?.map((ability) => (
                 <li>{ability.technology}</li>
               ))}
           </ul>
@@ -65,8 +64,7 @@ export default function JobSeekerDetail() {
 
           <Header as="h4">Language <Icon name="language"/></Header>
           <ul>
-            {jobSeekerResume.languages &&
-              jobSeekerResume.languages.map((language) => (
+            {jobSeekerResume?.languages?.map((language) => (
                 <li>
                   {" "}
                   {language.languageName} <Rating style={{marginLeft:20}} defaultRating={language.languageLevel} maxRating={5} disabled />
@@ -79,8 +77,7 @@ export default function JobSeekerDetail() {
 
           <Header as="h4">Job Experience <Icon name="briefcase"/> </Header>
           <ul>
-            {jobSeekerResume.jobExperiences &&
-              jobSeekerResume.jobExperiences.map((jobExp) => (
+            {jobSeekerResume?.jobExperiences?.map((jobExp) => (
                 <li>
                   {" "}
                   {jobExp.workPlaceName} - {jobExp.position} ({jobExp.startYear}{" "}
@@ -92,8 +89,8 @@ export default function JobSeekerDetail() {
           <Divider />
           <Header as="h4">Social <Icon name="github alternate" /></Header>
           <ul>
-            <li>{jobSeekerResume.githubAddress}</li>
-            <li>{jobSeekerResume.linkedinAdress}</li>
+            <li>{jobSeekerResume?.githubAddress}</li>
+            <li>{jobSeekerResume?.linkedinAdress}</li>
           </ul>
         </Segment>
       </Container>
