@@ -19,6 +19,7 @@ import { Formik, Form } from "formik";
 import * as yup from 'yup';
 import HrmsSelect from "../utilities/customFormControls/HrmsSelect";
 import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
+import { toast, ToastContainer} from "react-toastify";
 
 export default function JobAdvertList() {
 
@@ -30,10 +31,11 @@ export default function JobAdvertList() {
   const [jobPositions, setJobPositions] = useState([])
   const [cities, setCities] = useState([])
   const [copyOfJobAdvertsState, setCopyOfJobAdvertsState] = useState([])
+  const [pageSize, setPageSize] = useState(10)
 
   useEffect(() => {
     jobAdvertService
-      .getAllJobAdvertByPage(1)
+      .getAllJobAdvertByPage(1, pageSize)
       .then((response) => {
         setjobAdverts(response.data.data)
         setCopyOfJobAdvertsState(response.data.data)
@@ -103,13 +105,22 @@ export default function JobAdvertList() {
   }
 
   function handlePagination(pageNo) {
-    jobAdvertService.getAllJobAdvertByPage(pageNo).then(response => {
+    jobAdvertService.getAllJobAdvertByPage(pageNo, pageSize).then(response => {
       setjobAdverts(response.data.data)
+    })
+  }
+
+  function handlePageSize(pageSize) {
+    setPageSize(pageSize)
+    jobAdvertService.getAllJobAdvertByPage(1,pageSize).then(response => {
+      setjobAdverts(response.data.data)
+      toast.info(response.data.data.length + " Job Adverts are listed on the page")
     })
   }
 
   return (
     <div>
+      <ToastContainer/>
       <Grid>
         <Grid.Row>
           <GridColumn width={11}>
@@ -124,6 +135,21 @@ export default function JobAdvertList() {
                   <Dropdown.Item icon="tag" text='Filter By Job Type' />
                   <Dropdown.Item text='Full Time Jobs' label={{ color: 'orange', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)} />
                   <Dropdown.Item text='Half Time Jobs' label={{ color: 'orange', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)}/>
+                  <Dropdown.Divider />
+                  
+                  <Dropdown.Item>
+
+                    <Dropdown text='The number of adverts on the page' >
+                      <Dropdown.Menu>                        
+                          <Dropdown.Header>Adverts Count</Dropdown.Header>
+                          <Dropdown.Item onClick={(e) => handlePageSize(e.target.innerText)}><b>10</b></Dropdown.Item>
+                          <Dropdown.Item onClick={(e) => handlePageSize(e.target.innerText)}><b>20</b> </Dropdown.Item>
+                          <Dropdown.Item onClick={(e) => handlePageSize(e.target.innerText)}><b>50</b></Dropdown.Item>
+                          <Dropdown.Item onClick={(e) => handlePageSize(e.target.innerText)}><b>100</b></Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </Dropdown.Item>
+
                 </Dropdown.Menu>
               </Dropdown> 
             </Header>
@@ -263,6 +289,7 @@ export default function JobAdvertList() {
       </Card.Group>
 
       <Pagination
+        style={{marginTop:"20px"}}
         boundaryRange={0}
         defaultActivePage={1}
         ellipsisItem={null}
