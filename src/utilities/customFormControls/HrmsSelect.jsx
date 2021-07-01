@@ -7,8 +7,6 @@ export default function HrmsSelect({...props}) {
     
     const [field, meta] = useField(props)
 
-    console.log(meta)
-
     return (
         <FormField>
         <label>

@@ -10,7 +10,7 @@ import {
   Button,
   Modal,
   Icon,
-  FormGroup
+  FormGroup, Dropdown, Pagination
 } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 import JobPositionService from "../services/jobPositionService";
@@ -21,17 +21,23 @@ import HrmsSelect from "../utilities/customFormControls/HrmsSelect";
 import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
 
 export default function JobAdvertList() {
+
+  const jobAdvertService = new JobAdvertService();
+
   const [jobAdverts, setjobAdverts] = useState([]);
   const [open, setOpen] = useState(false);
   const [secondOpen, setSecondOpen] = useState(false)
   const [jobPositions, setJobPositions] = useState([])
   const [cities, setCities] = useState([])
+  const [copyOfJobAdvertsState, setCopyOfJobAdvertsState] = useState([])
 
   useEffect(() => {
-    let jobAdvertService = new JobAdvertService();
     jobAdvertService
-      .getJobAdvertDto()
-      .then((response) => setjobAdverts(response.data.data));
+      .getAllJobAdvertByPage(1)
+      .then((response) => {
+        setjobAdverts(response.data.data)
+        setCopyOfJobAdvertsState(response.data.data)
+      });
   }, []);
 
   useEffect(() => {
@@ -46,12 +52,17 @@ export default function JobAdvertList() {
     
   }, [])
 
-  
   const initialValues = {
       jobPosition: {
             jobPositionId:0,
           },
       city: {cityId: 0},
+      jobType: {
+        jobTypeId: 0
+      },
+      workPlace: {
+        workPlaceId: 0
+      },
       minSalary:"",
       maxSalary:"",
       countOfJob:"",
@@ -60,12 +71,42 @@ export default function JobAdvertList() {
   }
 
   const schema = yup.object({
-    jobPositionId : yup.number().required("Please select a job position"),
-    cityId : yup.number().required("Please select a city"),
+    jobPosition : yup.object({
+      jobPositionId : yup.number().required("Please select a job position")
+    }),
+    city: yup.object({
+      cityId : yup.number().required("Please select a city")
+    }),
     countOfJob : yup.number().required("Please enter a job count"),
     deadline : yup.string().required("Please enter a deadline for job"),
     jobDescription : yup.string().required("Please describe the job")
   })
+
+  function handleStateByFilterType(filterType) {
+    
+    let filteredState = []
+
+    if (filterType === "Remote Jobs") {
+      filteredState = copyOfJobAdvertsState.filter((jobAdvert) => jobAdvert.workPlace.workPlaceName === "Remote")
+    }
+    else if (filterType === "In Place Jobs") {
+      filteredState = copyOfJobAdvertsState.filter((jobAdvert) => jobAdvert.workPlace.workPlaceName === "In Place")
+    }
+    else if (filterType === "Full Time Jobs") {
+      filteredState = copyOfJobAdvertsState.filter((jobAdvert) => jobAdvert.jobType.jobTypeName === "Full Time")
+    }
+    else if( filterType === "Half Time Jobs") {
+      filteredState = copyOfJobAdvertsState.filter((jobAdvert) => jobAdvert.jobType.jobTypeName === "Half Time")
+    }
+
+    setjobAdverts(filteredState)
+  }
+
+  function handlePagination(pageNo) {
+    jobAdvertService.getAllJobAdvertByPage(pageNo).then(response => {
+      setjobAdverts(response.data.data)
+    })
+  }
 
   return (
     <div>
@@ -73,7 +114,18 @@ export default function JobAdvertList() {
         <Grid.Row>
           <GridColumn width={11}>
             <Header as="h2" textAlign="left">
-              Job Adverts
+              <Dropdown text="Job Adverts">
+                <Dropdown.Menu>
+                  <Dropdown.Item icon="tag" text='Filter By Work Place' style={{marginTop:"10px"}} />
+                  <Dropdown.Item text='Remote Jobs' label={{ color: 'violet', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)}/>
+                  <Dropdown.Item text='In Place Jobs' label={{ color: 'violet', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)}/>
+                  <Dropdown.Divider />
+
+                  <Dropdown.Item icon="tag" text='Filter By Job Type' />
+                  <Dropdown.Item text='Full Time Jobs' label={{ color: 'orange', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)} />
+                  <Dropdown.Item text='Half Time Jobs' label={{ color: 'orange', empty: true, circular: true }} onClick={(e) => handleStateByFilterType(e.target.innerHTML)}/>
+                </Dropdown.Menu>
+              </Dropdown> 
             </Header>
           </GridColumn>
           <GridColumn width={3} floated="right">
@@ -95,7 +147,6 @@ export default function JobAdvertList() {
                       values.city.cityId = parseInt(values.city.cityId)
                       console.log(values)
 
-                      let jobAdvertService = new JobAdvertService();
                       await jobAdvertService.add(values).then(response => {
                         setSecondOpen(true)
                         console.log(response.data.message)
@@ -123,16 +174,16 @@ export default function JobAdvertList() {
                               placeholder='City'
                             />
                             <HrmsSelect
-                              name="remote"
-                              options={[ { key: 'r', value: 'Remote' }, { key: 'p', value: 'In Place' }]}
+                              name="workPlace.workPlaceId"
+                              options={[ { key: 1, value: 'Remote' }, { key: 2, value: 'In Place' }]}
                               placeholder='Work Place'
                               label="Work Place"
                             />
                         </FormGroup>
                         
                         <HrmsSelect
-                          name="jobType"
-                          options={[ { key: 'f', value: 'Full Time' }, { key: 'h', value: 'Half Time' }]}
+                          name="jobType.jobTypeId"
+                          options={[ { key: 1, value: 'Full Time' }, { key: 2, value: 'Half Time' }]}
                           placeholder='Job Type'
                           label="Job Type"
                         />
@@ -184,21 +235,24 @@ export default function JobAdvertList() {
             as={NavLink}
             to={`/jobAdverts/${jobAdvert.advertId}`}
           >
-            <Label as="a" color="yellow" corner="left" icon="favorite"/>
-            <Label as="a" color="violet" ribbon="right" floating>
+            <Label color="yellow" corner="left" icon="favorite"/>
+            <Label color="violet" ribbon="right" floating>
               New
             </Label>
             <Card.Content>
-              <Card.Header>{jobAdvert.jobPositionName}</Card.Header>
-              <Card.Meta>{jobAdvert.companyName}</Card.Meta>
+              <Card.Header>{jobAdvert.jobPosition?.jobPositionName}</Card.Header>
+              <Card.Meta>{jobAdvert.employer?.companyName}</Card.Meta>
               <Card.Description>
-                <b>City:</b> {jobAdvert.cityName}
+                <b>City:</b> {jobAdvert.city?.cityName}
               </Card.Description>
               <Card.Description>
                 <b>Quota:</b> {jobAdvert.countOfJob}
               </Card.Description>
               <Card.Description>
-                <b>Published At:</b> {jobAdvert.publishedDate}
+                <b>Job Type:</b> {jobAdvert.jobType?.jobTypeName}
+              </Card.Description>
+              <Card.Description>
+                <b>Work Place:</b> {jobAdvert.workPlace?.workPlaceName}
               </Card.Description>
               <Card.Description>
                 <b>Deadline:</b> {jobAdvert.deadline}
@@ -207,6 +261,17 @@ export default function JobAdvertList() {
           </Card>
         ))}
       </Card.Group>
+
+      <Pagination
+        boundaryRange={0}
+        defaultActivePage={1}
+        ellipsisItem={null}
+        firstItem={null}
+        lastItem={null}
+        siblingRange={1}
+        totalPages={10}
+        onPageChange={(e) => handlePagination(e.target.innerHTML)}
+      />
     </div>
   );
 }

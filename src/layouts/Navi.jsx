@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Container, Icon, Menu } from "semantic-ui-react";
 import SignedOut from "./SignedOut";
 import SignedIn from "./SignedIn";
+import FavoriteJobAdverts from "./FavoriteJobAdverts";
 
 export default function Navi() {
 
@@ -33,6 +34,7 @@ export default function Navi() {
 
           <Menu.Menu position="right">
             {isAuthenticated ? <SignedIn signedOut={handleSignOut} /> : <SignedOut signedIn={handleSignIn} /> }
+            <FavoriteJobAdverts/>
           </Menu.Menu>
   
         </Container>

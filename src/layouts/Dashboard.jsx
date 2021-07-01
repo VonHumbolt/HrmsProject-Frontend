@@ -12,13 +12,12 @@ import { Route } from 'react-router'
 import ResumeDetail from '../pages/ResumeDetail'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import ConfirmJobAdverts from '../pages/ConfirmJobAdverts'
 import ResumeAdd from '../pages/ResumeAdd'
 import ResumeUpdate from '../pages/ResumeUpdate'
 import EmployerDetail from '../pages/EmployerDetail'
 import EmployerUpdate from '../pages/EmployerUpdate'
 import ConfirmPage from '../pages/ConfirmPage'
-import ConfirmEmployerUpdate from '../pages/ConfirmEmployerUpdate'
+import JobSeekerFavoriteAdverts from '../pages/JobSeekerFavoriteAdverts'
 
 export default function Dashboard() {
     return (
@@ -45,6 +44,7 @@ export default function Dashboard() {
                         <Route exact path="/resume/add" component={ResumeAdd} />
                         <Route exact path="/resume/update/:resumeId" component={ResumeUpdate} />
                         <Route exact path="/confirmPage" component={ConfirmPage} />
+                        <Route exact path="/favoriteJobAdverts" component={JobSeekerFavoriteAdverts} />
 
                     </Grid.Column>
              </Grid.Row>

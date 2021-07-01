@@ -1,6 +1,15 @@
 import axios from "axios"
 
 export default class JobAdvertService{
+
+    getAllJobAdvertByPage(pageNo, pageSize=10) {
+        return axios.get("http://localhost:8080/api/jobAdverts/getAllByPage?pageNo=" + pageNo + "&pageSize=" + pageSize)
+    }
+
+    getJobAdvertByAdvertId(advertId) {
+        return axios.get("http://localhost:8080/api/jobAdverts/getByAdvertId?advertId=" +advertId)
+    }
+
     getJobAdvertDto() {
         return axios.get("http://localhost:8080/api/jobAdverts/getJobAdvertDetails")
     }
@@ -9,7 +18,7 @@ export default class JobAdvertService{
         return axios.get("http://localhost:8080/api/jobAdverts/getPassiveJobAdvertDetails");
     }
 
-    getJobAdvertByJobAdvertId(advertId) {
+    getJobAdvertDtoByJobAdvertId(advertId) {
         return axios.get("http://localhost:8080/api/jobAdverts/getJobAdvertDtoByAdvertId?advertId="+advertId)
     }
 

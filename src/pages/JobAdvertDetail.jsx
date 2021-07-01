@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JobAdvertService from "../services/jobAdvertService";
 import { Divider, Header, Icon, Table, Button, Segment} from "semantic-ui-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveJobAdvertToFavorite, deleteJobAdvertToFavorite } from "../store/reducers/favoriteJobReducer";
 
 
@@ -17,7 +17,7 @@ export default function JobAdvertDetail() {
   useEffect(() => {
     let jobAdvertService = new JobAdvertService();
     jobAdvertService
-      .getJobAdvertByJobAdvertId(advertId)
+      .getJobAdvertByAdvertId(advertId)
       .then((response) => setJobAdvert(response.data.data));
   }, []);
 
@@ -58,31 +58,39 @@ export default function JobAdvertDetail() {
 
         <Table definition>
           <Table.Body>
-            <Table.Row>
+            <Table.Row key="1">
               <Table.Cell width={2}>Employer</Table.Cell>
-              <Table.Cell>{jobAdvert.companyName}</Table.Cell>
+              <Table.Cell>{jobAdvert.employer?.companyName}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="2">
               <Table.Cell>Job Position</Table.Cell>
-              <Table.Cell>{jobAdvert.jobPositionName}</Table.Cell>
+              <Table.Cell>{jobAdvert.jobPosition?.jobPositionName}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="3">
               <Table.Cell>City</Table.Cell>
-              <Table.Cell>{jobAdvert.cityName}</Table.Cell>
+              <Table.Cell>{jobAdvert.city?.cityName}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="4">
               <Table.Cell>Quota</Table.Cell>
               <Table.Cell>{jobAdvert.countOfJob}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="5">
+              <Table.Cell>Job Type</Table.Cell>
+              <Table.Cell>{jobAdvert.jobType?.jobTypeName}</Table.Cell>
+            </Table.Row>
+            <Table.Row key="6">
+              <Table.Cell>Work Place</Table.Cell>
+              <Table.Cell>{jobAdvert.workPlace?.workPlaceName}</Table.Cell>
+            </Table.Row>
+            <Table.Row key="7">
               <Table.Cell>Salary</Table.Cell>
               <Table.Cell>{jobAdvert.minSalary}₺ - {jobAdvert.maxSalary}₺</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="8">
               <Table.Cell>Published Date</Table.Cell>
               <Table.Cell>{jobAdvert.publishedDate}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            <Table.Row key="9">
               <Table.Cell>Deadline</Table.Cell>
               <Table.Cell>{jobAdvert.deadline}</Table.Cell>
             </Table.Row>
