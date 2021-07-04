@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import ResumeService from "../services/resumeService";
+import ResumeService from "../../services/resumeService";
 import {
   Grid,
   GridColumn,

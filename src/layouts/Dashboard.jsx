@@ -5,19 +5,20 @@ import JobAdvertList from '../pages/JobAdvertList'
 import JobPositionList from '../pages/JobPositionList'
 import JobSeekerDetail from '../pages/JobSeekerDetail'
 import JobSeekerList from '../pages/JobSeekerList'
-import ResumeList from '../pages/ResumeList'
+import ResumeList from '../pages/Resume/ResumeList'
 import JobAdvertDetail from '../pages/JobAdvertDetail'
 import Sidebar from './Sidebar'
 import { Route } from 'react-router'
-import ResumeDetail from '../pages/ResumeDetail'
+import ResumeDetail from '../pages/Resume/ResumeDetail'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import ResumeAdd from '../pages/ResumeAdd'
-import ResumeUpdate from '../pages/ResumeUpdate'
+import ResumeAdd from '../pages/Resume/ResumeAdd'
+import ResumeUpdate from '../pages/Resume/ResumeUpdate'
 import EmployerDetail from '../pages/EmployerDetail'
 import EmployerUpdate from '../pages/EmployerUpdate'
 import ConfirmPage from '../pages/ConfirmPage'
 import JobSeekerFavoriteAdverts from '../pages/JobSeekerFavoriteAdverts'
+import SystemPersonnelUpdate from '../pages/SystemPersonnelUpdate'
 
 export default function Dashboard() {
     return (
@@ -45,6 +46,7 @@ export default function Dashboard() {
                         <Route exact path="/resume/update/:resumeId" component={ResumeUpdate} />
                         <Route exact path="/confirmPage" component={ConfirmPage} />
                         <Route exact path="/favoriteJobAdverts" component={JobSeekerFavoriteAdverts} />
+                        <Route exact path="/systemPersonnel/update" component={SystemPersonnelUpdate} />
 
                     </Grid.Column>
              </Grid.Row>

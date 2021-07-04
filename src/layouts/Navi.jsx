@@ -16,7 +16,6 @@ export default function Navi() {
   function handleSignOut() {
     setIsAuthenticated(false)
   }
-
   return (
     <div>
       <Menu stackable inverted>
