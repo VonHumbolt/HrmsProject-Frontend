@@ -9,11 +9,6 @@ export default function AbilitiesUpdate({goToLanguagesComponent, goToJobExperien
     
     const abilityService = new AbilityService();
 
-    const initialValues={
-        abilityId:"",
-        technology:""
-    }
-
     return (
         <div>
             <ToastContainer />
@@ -24,11 +19,9 @@ export default function AbilitiesUpdate({goToLanguagesComponent, goToJobExperien
 
                 {abilities.map((ability) => (
                     <Formik
-                        initialValues={initialValues}
+                        initialValues={{abilityId: ability.abilityId, technology: ability.technology}}
                         onSubmit={ values => {
-                            values.abilityId = ability.abilityId
-
-                            console.log(values)
+                    
                             abilityService.update(values).then(response => {
                                 if(response.data.success) {
                                     toast.success("Changes are saved")
@@ -42,7 +35,7 @@ export default function AbilitiesUpdate({goToLanguagesComponent, goToJobExperien
                             <Grid>
                                 <Grid.Row>
                                     <Grid.Column width={14}>
-                                        <HrmsTextInput name="technology" placeholder={ability.technology} />
+                                        <HrmsTextInput name="technology" />
                                     </Grid.Column>
                                     <Grid.Column width={2}>
                                         <Button circular icon="checkmark" positive style={{marginTop:"20px"}} type="onSubmit"/>
@@ -55,11 +48,11 @@ export default function AbilitiesUpdate({goToLanguagesComponent, goToJobExperien
                 ))}
                 
                 <Button content='Languages' icon='right arrow' 
-                  labelPosition='right' floated="right" style={{marginTop:"20px"}} 
+                  labelPosition='right' floated="right" style={{marginTop:"30px"}} 
                   color="violet" onClick={goToLanguagesComponent} />
 
                 <Button content='Job Experiences' icon='left arrow' 
-                  labelPosition='left' floated="left" style={{marginTop:"20px"}} 
+                  labelPosition='left' floated="left" style={{marginTop:"30px"}} 
                   color="violet" onClick={goToJobExperienceComponent} />
 
                 </Container>

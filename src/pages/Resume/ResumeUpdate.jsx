@@ -22,7 +22,6 @@ export default function ResumeUpdate() {
         )
     }, [])
 
-    console.log(resume)
     const [activeItem, setActiveItem] = useState("Schools")
 
     function goToJobExperienceComponent() {
@@ -50,7 +49,6 @@ export default function ResumeUpdate() {
           <Step.Group size="tiny">
             <Step
               icon="graduation"
-              completed={activeItem !== "Schools"}
               active={activeItem === 'Schools'}
               onClick={() => setActiveItem("Schools")}
               title="Schools" />

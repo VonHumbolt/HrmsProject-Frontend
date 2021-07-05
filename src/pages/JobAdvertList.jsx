@@ -19,6 +19,7 @@ import { Formik, Form } from "formik";
 import * as yup from 'yup';
 import HrmsSelect from "../utilities/customFormControls/HrmsSelect";
 import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
+import HrmsTextArea from "../utilities/customFormControls/HrmsTextArea";
 import { toast, ToastContainer} from "react-toastify";
 
 export default function JobAdvertList() {
@@ -219,8 +220,8 @@ export default function JobAdvertList() {
                             <HrmsTextInput name="countOfJob" label='Worker Quota' placeholder='Worker Quota' type="number"/>
                         </FormGroup>
 
-                        <HrmsTextInput name="deadline"  icon="calendar alternate outline" label="Deadline" placeholder="Deadline" />
-                        <HrmsTextInput name="jobDescription" placeholder="About Job" label="Job Description" control="textarea" rows="6"/>
+                        <HrmsTextInput name="deadline"  icon="calendar alternate outline" label="Deadline" type="date" placeholder="Deadline" />
+                        <HrmsTextArea name="jobDescription" placeholder="About Job" label="Job Description" control="textarea" rows="6"/>
         
                     <Button color="violet" style={{marginBottom:20}}  floated="right" type="submit"> Add Job Advert <Icon style={{marginLeft:10}} name="checkmark"/></Button>
                   

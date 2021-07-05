@@ -14,12 +14,12 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
     const history = useHistory()
 
     const initialValues = {
-        resumeId:"",
-        firstName:"",
-        lastName:"",
-        githubAddress:"",
-        linkedinAdress:"",
-        coverLetter:""
+        resumeId: resume.resumeId,
+        firstName: resume.jobSeeker?.firstName,
+        lastName: resume.jobSeeker?.lastName,
+        githubAddress: resume.githubAddress,
+        linkedinAdress: resume.linkedinAdress,
+        coverLetter: resume.coverLetter
     }
     const schema = yup.object({
         firstName: yup.string(),
@@ -36,7 +36,7 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
 
     function handleSelectImage(selectedImage) {
         
-        const reader = new FileReader();
+        const reader = new FileReader(); 
         reader.onload = () => {
             if (reader.readyState === 2) {
                 setSelectedImage(reader.result)
@@ -69,7 +69,8 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
                 <Grid style={{marginTop:"30px"}}>
                     <Grid.Row>
                         <Grid.Column width={4}>
-                            <Image type="file" src={selectedImage} onClick={() => fileInput.click()} />
+                            
+                            <Image type="file" src={selectedImage} size="medium" rounded onClick={() => fileInput.click()} />
                             <input
                                 style={{display:"none"}} 
                                 type="file"
@@ -83,7 +84,6 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
                                 initialValues = {initialValues}
                                 validationSchema= {schema}
                                 onSubmit= {values => {
-                                    values.resumeId = resume.resumeId
 
                                     const resumeService = new ResumeService();
                                     resumeService.update(values).then(response => {
@@ -95,11 +95,11 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
                                 }}
                             >
                                 <Form className="ui form">
-                                    <HrmsTextInput name="firstName" label="First Name" placeholder={resume.jobSeeker?.firstName} />
-                                    <HrmsTextInput name="lastName" label="Last Name" placeholder={resume.jobSeeker?.lastName} />
-                                    <HrmsTextInput name="githubAddress" label="Github" placeholder={resume.githubAddress} />
-                                    <HrmsTextInput name="linkedinAdress" label="LinkedIn" placeholder={resume.linkedinAdress} />
-                                    <HrmsTextArea name="coverLetter" label="About Me" placeholder={resume.coverLetter} />
+                                    <HrmsTextInput name="firstName" label="First Name" />
+                                    <HrmsTextInput name="lastName" label="Last Name" />
+                                    <HrmsTextInput name="githubAddress" label="Github" />
+                                    <HrmsTextInput name="linkedinAdress" label="LinkedIn" />
+                                    <HrmsTextArea name="coverLetter" label="About Me" />
                                         
                                     <Button type="onSubmit" content="Update" positive circular floated="right"
                                          style={{marginTop:"20px"}}
@@ -113,7 +113,7 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
 
                     
                 <Button content='Languages' icon='left arrow' 
-                  labelPosition='left' floated="left" style={{marginTop:"20px"}} 
+                  labelPosition='left' floated="left" style={{marginTop:"30px"}} 
                   color="violet" onClick={goToLanguagesComponent} />
 
             </Segment>

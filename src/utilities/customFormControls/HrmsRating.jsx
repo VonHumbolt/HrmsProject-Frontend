@@ -1,12 +1,10 @@
 import { useField } from 'formik'
 import React from 'react'
-import { useState } from 'react'
-import { FormField, Label, Rating } from 'semantic-ui-react'
+import { FormField, Label } from 'semantic-ui-react'
 
 export default function HrmsRating({...props}) {
     
     const [field,meta] = useField(props)
-    const [ratingValue, setRatingValue] = useState()
 
     return (
         <div>
@@ -15,13 +13,13 @@ export default function HrmsRating({...props}) {
                     {props.label}
                 </label>
                 
-                <Rating
+                <input
                     {...field} {...props}
-                    rating={ratingValue}
-                    maxRating={5}
-                    onRate={(e) => setRatingValue(e.target.ariaPosInSet)}
+                    type="range"
+                    min={1}
+                    max={5}
                 >
-                </Rating>
+                </input>
 
                 {meta.touched && !!meta.error ? (
                     <Label pointing color="red" basic content={meta.error} />

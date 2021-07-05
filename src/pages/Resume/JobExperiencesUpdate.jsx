@@ -14,13 +14,6 @@ export default function JobExperiencesUpdate({ goToAbilitiesComponent, goToSchoo
 
     const jobExperienceService = new JobExperienceService();
 
-    const initialValues = {
-        experienceId:"",
-        workPlaceName:"",
-        position:"",
-        startYear:"",
-        endYear:""
-    }
     return (
         <div>
         <ToastContainer position="top-right" />
@@ -29,9 +22,9 @@ export default function JobExperiencesUpdate({ goToAbilitiesComponent, goToSchoo
 
             {jobExperiences?.map((jobExperience) => (
               <Formik
-              initialValues={initialValues}
+              initialValues={{experienceId: jobExperience.experienceId, workPlaceName: jobExperience.workPlaceName, 
+                                position: jobExperience.position, startYear: jobExperience.startYear, endYear: jobExperience.endYear}}
               onSubmit={(values) => {
-                values.experienceId = jobExperience.experienceId
 
                 jobExperienceService.update(values).then(response => {
                     if(response.data.success) {
@@ -43,22 +36,22 @@ export default function JobExperiencesUpdate({ goToAbilitiesComponent, goToSchoo
               key={jobExperience.experienceId}
             >
               <Form className= "ui form">
-                <Segment color="orange" style={{marginTop:"50px"}} key={jobExperience.experienceId}>
+                <Segment color="orange" style={{marginTop:"50px"}}>
                 <Grid>
                   <Grid.Row>
                     <Grid.Column width={10}>
-                      <HrmsTextInput name="workPlaceName" label="Work Place Name" placeholder={jobExperience.workPlaceName} />
-                      <HrmsTextInput name="position" label="Job Position" placeholder={jobExperience.position} />
+                      <HrmsTextInput name="workPlaceName" label="Work Place Name" />
+                      <HrmsTextInput name="position" label="Job Position" />
                     </Grid.Column>
                     <Grid.Column width={6} style={{marginTop:"30px"}}>
                       <Grid columns={2}>
                         <Grid.Row>
                           <Grid.Column>
-                              <HrmsTextInput name="startYear" label="Start Year" type="number" placeholder={jobExperience.startYear} />
+                              <HrmsTextInput name="startYear" label="Start Year" type="number" />
                               
                           </Grid.Column>
                           <Grid.Column>
-                          <HrmsTextInput name="endYear" label="End Year" type="number" placeholder={jobExperience.endYear} />
+                          <HrmsTextInput name="endYear" label="End Year" type="number" />
   
                           </Grid.Column>
                         </Grid.Row>
@@ -74,11 +67,11 @@ export default function JobExperiencesUpdate({ goToAbilitiesComponent, goToSchoo
             ))}
            
             <Button content='Abilities' icon='right arrow' 
-                  labelPosition='right' floated="right" style={{marginTop:"20px"}} 
+                  labelPosition='right' floated="right" style={{marginTop:"30px"}} 
                   color="violet" onClick={goToAbilitiesComponent} />
 
             <Button content='Schools' icon='left arrow' 
-                  labelPosition='left' floated="left" style={{marginTop:"20px"}} 
+                  labelPosition='left' floated="left" style={{marginTop:"30px"}} 
                   color="violet" onClick={goToSchoolComponent} />
 
         </Segment>
