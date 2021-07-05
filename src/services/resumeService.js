@@ -16,4 +16,12 @@ export default class ResumeService{
     add(resume) {
         return axios.post("http://localhost:8080/api/resumes/add", resume)
     }
+
+    update(resume) {
+        return axios.post("http://localhost:8080/api/resumes/update", resume)
+    }
+
+    delete(resume) {
+        return axios.post("http://localhost:8080/api/resumes/delete", resume)
+    }
 }

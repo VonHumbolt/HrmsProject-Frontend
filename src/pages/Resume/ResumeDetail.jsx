@@ -40,6 +40,8 @@ export default function ResumeDetail() {
                 />
 
                 <Header as="h3">Personal</Header>
+                <Divider />
+
                 <Container style={{ paddingLeft: "10px" }} textAlign="left">
                   <Header as="h4">
                     <Icon name="user" /> Name
@@ -49,24 +51,21 @@ export default function ResumeDetail() {
                       {resume.jobSeeker?.firstName} {resume.jobSeeker?.lastName}
                     </b>
                   </p>
+                  <Divider />
+
                   <Header as="h4">
                     {" "}
                     <Icon name="calendar alternate outline" /> Birthday
                   </Header>
                   <p>
-                    <b>{resume.jobSeeker?.dateOfBorn}</b>
+                    <b>{new Date(resume.jobSeeker?.dateOfBorn).toLocaleDateString()}</b>
                   </p>
+                  <Divider />
                   <Header as="h4">
                     <Icon name="at" /> Social
                   </Header>
-                  <ul>
-                    <li>
-                      <b>{resume.githubAddress}</b>
-                    </li>
-                    <li>
+                      <b>{resume.githubAddress}</b> <br />
                       <b>{resume.linkedinAdress}</b>
-                    </li>
-                  </ul>
                 </Container>
               </Container>
             </GridColumn>
