@@ -1,0 +1,54 @@
+import React from 'react'
+import { Segment, Grid, Divider, Button } from 'semantic-ui-react'
+import { Formik, Form } from 'formik'
+import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput'
+
+export default function JobExperienceAdd() {
+    return (
+        <div>
+            <Segment color="orange">
+          <Divider horizontal>Add Your Job Experiences</Divider>
+
+              <Formik>
+                
+              <Form className= "ui form">
+                <Segment color="orange" style={{marginTop:"50px"}}>
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column width={10}>
+                      <HrmsTextInput name="workPlaceName" label="Work Place Name" />
+                      <HrmsTextInput name="position" label="Job Position" />
+                    </Grid.Column>
+                    <Grid.Column width={6} style={{marginTop:"30px"}}>
+                      <Grid columns={2}>
+                        <Grid.Row>
+                          <Grid.Column>
+                              <HrmsTextInput name="startYear" label="Start Year" type="number" />
+                              
+                          </Grid.Column>
+                          <Grid.Column>
+                          <HrmsTextInput name="endYear" label="End Year" type="number" />
+  
+                          </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
+                      <Button color="orange" circular icon="checkmark" content="Confirm" type="onSubmit"  style={{marginTop:"20px"}} />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+              </Segment>
+              </Form>
+              </Formik>
+           
+            <Button content='Abilities' icon='right arrow' 
+                  labelPosition='right' floated="right" style={{marginTop:"30px"}} 
+                  color="violet" />
+
+            <Button content='Schools' icon='left arrow' 
+                  labelPosition='left' floated="left" style={{marginTop:"30px"}} 
+                  color="violet"  />
+
+        </Segment>
+        </div>
+    )
+}

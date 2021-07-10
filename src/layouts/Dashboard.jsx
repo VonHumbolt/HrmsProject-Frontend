@@ -12,7 +12,7 @@ import { Route } from 'react-router'
 import ResumeDetail from '../pages/Resume/ResumeDetail'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import ResumeAdd from '../pages/Resume/ResumeAdd'
+import ResumeAdd from '../pages/Resume/ResumeAdd/ResumeAdd'
 import ResumeUpdate from '../pages/Resume/ResumeUpdate'
 import EmployerDetail from '../pages/EmployerDetail'
 import EmployerUpdate from '../pages/EmployerUpdate'
@@ -42,7 +42,7 @@ export default function Dashboard() {
                         <Route exact path="/jobPositions" component={JobPositionList} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
-                        <Route exact path="/resume/add" component={ResumeAdd} />
+                        <Route exact path="/resume/add/:jobSeekerId" component={ResumeAdd} />
                         <Route exact path="/resume/update/:resumeId" component={ResumeUpdate} />
                         <Route exact path="/confirmPage" component={ConfirmPage} />
                         <Route exact path="/favoriteJobAdverts" component={JobSeekerFavoriteAdverts} />

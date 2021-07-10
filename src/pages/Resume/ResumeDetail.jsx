@@ -28,7 +28,7 @@ export default function ResumeDetail() {
 
   return (
     <div>
-      <Segment>
+      <Segment color="teal">
         <Grid>
           <Grid.Row>
             <GridColumn width={5}>
@@ -106,10 +106,10 @@ export default function ResumeDetail() {
                 <Grid>
                   {resume.jobExperiences?.map((jobExperience) => (
                     <Grid.Row>
-                      <Grid.Column width="5">
+                      <Grid.Column width={5}>
                         {jobExperience.startYear}-{jobExperience.endYear}
                       </Grid.Column>
-                      <Grid.Column width="11">
+                      <Grid.Column width={11}>
                         <b>
                           {" "}
                           {jobExperience.workPlaceName} -{" "}
@@ -169,8 +169,10 @@ export default function ResumeDetail() {
             </GridColumn>
           </Grid.Row>
         </Grid>
-      </Segment>
       <Button color="teal" as={NavLink} to={`/resume/update/${resume.resumeId}`} >Update Resume</Button>
+
+      </Segment>
+
     </div>
   );
 }

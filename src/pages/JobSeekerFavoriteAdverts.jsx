@@ -1,55 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Segment, Card, Feed } from 'semantic-ui-react'
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { Segment, Card, Feed, Divider } from "semantic-ui-react";
 
 export default function JobSeekerFavoriteAdverts() {
+  let favoriteAdverts = useSelector((state) => state.favoritesJob);
 
-    let favoriteAdverts = useSelector((state) => state.favoritesJob)
-    console.log(favoriteAdverts)
-    
-    return (
-        <div>
-            <Segment>
-            <Card>
-    <Card.Content>
-      <Card.Header>Recent Activity</Card.Header>
-    </Card.Content>
-    <Card.Content>
-      <Feed>
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
-              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+  return (
+    <div>
+      {console.log(favoriteAdverts)}
+      <Segment color="purple">
+        <Divider horizontal style={{marginTop:"20px", marginBottom:"50px"}}>Your Favorite Job Adverts</Divider>
 
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/molly.png' />
-          <Feed.Content>
-            <Feed.Date content='3 days ago' />
-            <Feed.Summary>
-              You added <a>Molly Malone</a> as a friend.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='/images/avatar/small/elliot.jpg' />
-          <Feed.Content>
-            <Feed.Date content='4 days ago' />
-            <Feed.Summary>
-              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-      </Feed>
-    </Card.Content>
-  </Card>
-            </Segment>
-        </div>
-    )
+        {favoriteAdverts.favoriteJobs?.map((favoriteAdvert) => (
+            <Card fluid as={NavLink} to={`/jobAdverts/${favoriteAdvert.advertId}`} color="blue">
+              <Card.Content>
+                <Card.Header>{favoriteAdvert.jobDescription}</Card.Header>
+              </Card.Content>
+              <Card.Content>
+                <Feed>
+                  <Feed.Event>
+                    <Feed.Content>
+                      <Feed.Summary>
+                        {"Deadline: " + new Date(favoriteAdvert.deadline).toLocaleDateString()}
+                      </Feed.Summary>
+                    </Feed.Content>
+                  </Feed.Event>
+                </Feed>
+                </Card.Content>
+              </Card>
+        ))}
+        
+      </Segment>
+    </div>
+  );
 }

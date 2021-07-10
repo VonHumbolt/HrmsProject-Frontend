@@ -33,7 +33,9 @@ export default function Navi() {
 
           <Menu.Menu position="right">
             {isAuthenticated ? <SignedIn signedOut={handleSignOut} /> : <SignedOut signedIn={handleSignIn} /> }
-            <FavoriteJobAdverts/>
+            {isAuthenticated ? <FavoriteJobAdverts/>: null }
+
+            
           </Menu.Menu>
   
         </Container>

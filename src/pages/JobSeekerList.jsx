@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Divider, Header, Image } from "semantic-ui-react";
+import { Button, Card, Divider, Header, Image, Segment } from "semantic-ui-react";
 import JobSeekerService from "../services/jobSeekerService";
 import { Link } from "react-router-dom";
 
@@ -28,9 +28,10 @@ export default function JobSeekerList() {
     
       <Header as="h2" textAlign="left">Job Seekers</Header>
       <Divider/>
+      <Segment color="purple">
       <Card.Group itemsPerRow={3}>
         {jobSeekers.map((jobSeeker) => (
-          <Card key={jobSeeker.jobSeekerId}>
+          <Card key={jobSeeker.jobSeekerId} color="purple">
             <Card.Content>
               <Image
                 floated='left'
@@ -58,6 +59,8 @@ export default function JobSeekerList() {
           </Card>
         ))}
       </Card.Group>
+      </Segment>
+
     </div>
   );
 }

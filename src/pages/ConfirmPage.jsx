@@ -17,11 +17,13 @@ export default class ConfirmPage extends Component {
                 <Menu attached='top' tabular>
                     <Menu.Item
                         name='Job Advert Requests'
+                        icon="clipboard"
                         active={activeItem === 'Job Advert Requests'}
                         onClick={this.handleItemClick}
                     />
                     <Menu.Item
                         name='Update Requests'
+                        icon="undo"
                         active={activeItem === 'Update Requests'}
                         onClick={this.handleItemClick}
                     />

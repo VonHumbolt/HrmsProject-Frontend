@@ -1,38 +1,17 @@
 import React from 'react'
-import {
-    Button,
-    Segment,
-    Divider,
-    Grid,
-  } from "semantic-ui-react";
-import { Formik, Form } from 'formik';
-import HrmsTextInput from '../../utilities/customFormControls/HrmsTextInput';
-import { toast, ToastContainer } from 'react-toastify';
-import HrmsRating from '../../utilities/customFormControls/HrmsRating';
-import LanguageService from '../../services/languageService';
+import { Segment, Divider, Grid, Button } from 'semantic-ui-react'
+import HrmsRating from '../../../utilities/customFormControls/HrmsRating'
+import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput'
+import { Formik, Form } from 'formik'
 
-export default function LanguageUpdate({goToPersonalComponent, goToAbilitiesComponent, languages}) {
-
+export default function LanguageAdd() {
     return (
         <div>
-            <ToastContainer position="top-right" />
-      <Segment color="orange">
-        <Divider horizontal>Update Your Languages</Divider>
+            <Segment color="orange">
+        <Divider horizontal>Add Your Language</Divider>
 
-            {languages?.map((language) => (
-              <Formik
-              initialValues={ {languageName: language.languageName , languageLevel: language.languageLevel, languageId: language.languageId} }
-              onSubmit={(values) => {
-
-                const languageService = new LanguageService();
-                languageService.update(values).then(response => {
-                  if (response.data.success) {
-                      toast.success("Language changes are saved")
-                  }
-                })
-              }}
-              key={language.languageId}
-            >
+              <Formik>
+            
               <Form className= "ui form">
                 <Segment color="orange" style={{marginTop:"50px"}}>
                 <Grid>
@@ -58,16 +37,14 @@ export default function LanguageUpdate({goToPersonalComponent, goToAbilitiesComp
               </Segment>
               </Form>
               </Formik>
-  
-            ))}
            
             <Button content='Personal' icon='right arrow' 
                   labelPosition='right' floated="right" style={{marginTop:"30px"}} 
-                  color="violet" onClick={goToPersonalComponent} />
+                  color="violet" />
 
             <Button content='Abilities' icon='left arrow' 
                   labelPosition='left' floated="left" style={{marginTop:"30px"}} 
-                  color="violet" onClick={goToAbilitiesComponent} />
+                  color="violet" />
 
         </Segment>
         </div>

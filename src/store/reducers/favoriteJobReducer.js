@@ -1,25 +1,30 @@
 import axios from 'axios';
 import {  ADD_FAVORITE, DELETE_FAVORITE, GET_FAVORITE } from '../actions/actions';
+import {favoriteJobs} from "../initialValues/favoriteJobs"
 
-const initialState = [
-    
-]
+const initialState = {
+    favoriteJobs: favoriteJobs
+}
 
 export default function favoriteJobReducer(state = initialState, {type, payload}) {
     
     switch (type) {
         case ADD_FAVORITE:
-            return [... state.favoritesJob.payload, payload]
-            
+            return {
+                favoriteJobs: [...state.favoriteJobs, payload]
+            }
 
         case DELETE_FAVORITE:
-            let favoritejobs = state.favoritesJob.filter((f) => f.advertId !== payload.advertId) 
+            console.log(state)
+            let filteredAdvert = state.favoriteJobs.filter((f) => f.advertId !== payload.advertId) 
             return {
-                favoritejobs
+                filteredAdvert
             }
         case GET_FAVORITE:
+            console.log(payload)
             return {
-                payload
+                ...state,
+                favoriteJobs: payload
             }
         default:
             return state;
@@ -34,11 +39,8 @@ export async function getAllFavorites(dispatch, getState) {
 }
 
 export function saveJobAdvertToFavorite(jobAdvert) {
-    console.log(jobAdvert)
     
     return async function saveFavoriteJobIntoDb(dispatch, getState) {
-        console.log([...getState().favoritesJob.payload , jobAdvert])
-
         await axios.post("http://localhost:8080/api/favoriteJobAdverts/add", jobAdvert).then(
             response => dispatch({type: ADD_FAVORITE, payload: jobAdvert})
         )

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { Container, Divider, Header, Segment, Icon, Label, Grid, GridColumn, Rating } from "semantic-ui-react";
+import { NavLink, useHistory, useParams } from "react-router-dom";
+import { Container, Divider, Header, Segment, Icon, Label, Grid, GridColumn, Rating, Button } from "semantic-ui-react";
 import JobSeekerService from "../services/jobSeekerService";
 import ResumeService from "../services/resumeService";
 
 export default function JobSeekerDetail() {
   let { id } = useParams();
+
+  const history = useHistory()
+
+  const resumeService = new ResumeService()
 
   const [jobSeeker, setJobSeeker] = useState({});
   const [jobSeekerResume, setJobSeekerResume] = useState({});
@@ -18,18 +22,25 @@ export default function JobSeekerDetail() {
   }, []);
 
   useEffect(() => {
-    let resumeService = new ResumeService();
     resumeService
       .getResumeByJobSeekerId(id)
       .then((response) => setJobSeekerResume(response.data.data));
-      console.log(jobSeeker)
   }, []);
+
+  function handleResumeAdd() {
+    resumeService.add({jobSeekerId: 11}).then(response => {
+      if (response.data.success) { 
+        history.push("/resume/add/"+11)
+      }
+    })
+  }
 
   return (
     <div>
       <Header as="h2" textAlign="center">
         {jobSeeker.firstName} {jobSeeker.lastName}
       </Header>
+      {console.log(jobSeekerResume)}
       
       <Divider horizontal>
         <Header as="h4">{jobSeeker.jobPositionName}</Header>
@@ -93,6 +104,11 @@ export default function JobSeekerDetail() {
             <li>{jobSeekerResume?.linkedinAdress}</li>
           </ul>
         </Segment>
+
+        <Button color="violet" onClick={() => handleResumeAdd()} >Add Resume</Button>
+        
+        
+
       </Container>
     </div>
   );

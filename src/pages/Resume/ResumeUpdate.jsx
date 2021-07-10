@@ -46,7 +46,7 @@ export default function ResumeUpdate() {
 
       return (
         <div>
-          <Step.Group size="tiny">
+          <Step.Group size="tiny" >
             <Step
               icon="graduation"
               active={activeItem === 'Schools'}
