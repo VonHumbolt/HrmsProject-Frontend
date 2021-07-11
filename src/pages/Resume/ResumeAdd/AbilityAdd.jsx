@@ -3,7 +3,7 @@ import { Segment, Divider, Container, Grid, Button } from 'semantic-ui-react'
 import { Formik, Form } from 'formik'
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput'
 
-export default function AbilityAdd() {
+export default function AbilityAdd({goToJobExperienceComponent, goToLanguageComponent}) {
     return (
         <div>
             <Segment>
@@ -11,10 +11,8 @@ export default function AbilityAdd() {
             
                 <Container>
 
-                
                     <Formik>
                         
-
                         <Form className="ui form">
                             <Grid>
                                 <Grid.Row>
@@ -32,11 +30,11 @@ export default function AbilityAdd() {
                 
                 <Button content='Languages' icon='right arrow' 
                   labelPosition='right' floated="right" style={{marginTop:"30px"}} 
-                  color="violet" />
+                  color="violet" onClick={goToLanguageComponent} />
 
                 <Button content='Job Experiences' icon='left arrow' 
                   labelPosition='left' floated="left" style={{marginTop:"30px"}} 
-                  color="violet" />
+                  color="violet" onClick={goToJobExperienceComponent} />
 
                 </Container>
                

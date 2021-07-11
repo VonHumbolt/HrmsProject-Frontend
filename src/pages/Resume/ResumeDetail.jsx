@@ -169,7 +169,7 @@ export default function ResumeDetail() {
             </GridColumn>
           </Grid.Row>
         </Grid>
-      <Button color="teal" as={NavLink} to={`/resume/update/${resume.resumeId}`} >Update Resume</Button>
+      <Button color="teal" as={NavLink} to={`/resume/update/${resume.resumeId}`} style={{marginTop:"20px"}} >Update Resume</Button>
 
       </Segment>
 

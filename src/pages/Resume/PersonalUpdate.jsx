@@ -70,7 +70,8 @@ export default function PersonalUpdate({goToLanguagesComponent, resume}) {
                     <Grid.Row>
                         <Grid.Column width={4}>
                             
-                            <Image type="file" src={selectedImage} size="medium" rounded onClick={() => fileInput.click()} />
+                            <Image type="file" src={selectedImage != null ? selectedImage : "https://res.cloudinary.com/dspea8wm4/image/upload/v1624285292/default_profile_rnssv9.png"} 
+                                size="medium" rounded onClick={() => fileInput.click()} />
                             <input
                                 style={{display:"none"}} 
                                 type="file"

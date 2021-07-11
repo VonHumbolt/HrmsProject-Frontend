@@ -53,9 +53,13 @@ export default function JobSeekerDetail() {
                 <Header as="h4">About Me <Icon name="hand peace outline"/></Header>
             </GridColumn>
             <GridColumn width={4}>
-            <Label as='a' color='orange' ribbon='right' as={NavLink} to={`/resumes/${id}`}>
-                  Click to See Cv
-            </Label>
+
+              {jobSeekerResume ? (
+                  <Label as='a' color='orange' ribbon='right' as={NavLink} to={`/resumes/${id}`}>
+                    Click to See Cv
+                  </Label>
+              ) : null}
+            
             </GridColumn>
           </Grid.Row>
           <Container text>
@@ -105,7 +109,9 @@ export default function JobSeekerDetail() {
           </ul>
         </Segment>
 
-        <Button color="violet" onClick={() => handleResumeAdd()} >Add Resume</Button>
+        {jobSeekerResume ? null : (
+            <Button color="violet" onClick={() => handleResumeAdd()} fluid>Add Resume</Button>
+        )}
         
         
 

@@ -40,13 +40,13 @@ export default function ResumeList() {
 
                 <Grid.Column width={12}>
                   <Header as="h3">
-                    {resume.jobSeeker.firstName +
+                    {resume.jobSeeker?.firstName +
                       " " +
-                      resume.jobSeeker.lastName}
+                      resume.jobSeeker?.lastName}
                   </Header>
                   <List
                     as={NavLink}
-                    to={`/resumes/${resume.jobSeeker.jobSeekerId}`}
+                    to={`/resumes/${resume.jobSeeker?.jobSeekerId}`}
                   >
                     <List.Item as="a">
                       <List.Content>
@@ -54,7 +54,7 @@ export default function ResumeList() {
                           Abilities <Icon name="check" />
                         </List.Header>
                         <List.Description>
-                          {resume.abilities[0].technology}
+                          {resume.abilities[0]?.technology}
                         </List.Description>
                         <br />
                         <List.Header>

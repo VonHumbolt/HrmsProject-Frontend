@@ -36,7 +36,7 @@ export default function JobAdvertDetail() {
   return (
     <div>
       <ToastContainer position="top-right" />
-      <Segment>
+      <Segment color="black">
         <Icon style={{marginLeft:"750px"}} name="favorite" size="big" onClick={() => handleFavoriteIcon()} color={isFavorite ? "yellow" : "black"} />
         
         <Divider horizontal>

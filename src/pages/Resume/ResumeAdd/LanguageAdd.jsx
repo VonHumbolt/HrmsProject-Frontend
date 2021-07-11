@@ -4,7 +4,7 @@ import HrmsRating from '../../../utilities/customFormControls/HrmsRating'
 import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput'
 import { Formik, Form } from 'formik'
 
-export default function LanguageAdd() {
+export default function LanguageAdd({goToAbilityComponent, goToPersonalComponent}) {
     return (
         <div>
             <Segment color="orange">
@@ -40,11 +40,11 @@ export default function LanguageAdd() {
            
             <Button content='Personal' icon='right arrow' 
                   labelPosition='right' floated="right" style={{marginTop:"30px"}} 
-                  color="violet" />
+                  color="violet" onClick={goToPersonalComponent} />
 
             <Button content='Abilities' icon='left arrow' 
                   labelPosition='left' floated="left" style={{marginTop:"30px"}} 
-                  color="violet" />
+                  color="violet" onClick={goToAbilityComponent} />
 
         </Segment>
         </div>

@@ -33,8 +33,8 @@ export default function SchoolUpdate({ goToJobExperienceComponent, schools }) {
                   })
                 
               }}
-              key={school.schoolId}
-            >
+              key={school.schoolId} >
+              
               <Form className= "ui form">
                 <Segment color="green" style={{marginTop:"50px"}}>
                 <Grid>

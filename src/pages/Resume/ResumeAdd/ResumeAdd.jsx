@@ -21,6 +21,26 @@ export default function ResumeAdd() {
 
   })
 
+  function goToJobExperienceComponent() {
+    setActiveItem("Job Experiences")
+  }
+  
+  function goToAbilityComponent() {
+    setActiveItem("Abilities")
+  }
+
+  function goToLanguageComponent() {
+    setActiveItem("Languages")
+  }
+
+  function goToPersonalComponent() {
+    setActiveItem("Personal")
+  }
+
+  function goToSchoolComponent() {
+    setActiveItem("Schools")
+  }
+
   return (
         <div>
     {console.log(jobSeekerResume)}
@@ -62,11 +82,11 @@ export default function ResumeAdd() {
 
           </Step.Group>
 
-          {activeItem === "Schools" ? (<SchoolAdd />) : null}
-          {activeItem === "Job Experiences" ? (<JobExperienceAdd />) : null}
-          {activeItem === "Abilities" ? (<AbilityAdd />) : null}
-          {activeItem === "Languages" ? (<LanguageAdd />) : null}
-          {activeItem === "Personal" ? (<PersonalAdd />) : null}
+          {activeItem === "Schools" ? (<SchoolAdd jobSeekerId={jobSeekerId} goToJobExperienceComponent={goToJobExperienceComponent} />) : null}
+          {activeItem === "Job Experiences" ? (<JobExperienceAdd goToSchoolComponent={goToSchoolComponent} goToAbilityComponent={goToAbilityComponent} />) : null}
+          {activeItem === "Abilities" ? (<AbilityAdd goToJobExperienceComponent={goToJobExperienceComponent} goToLanguageComponent={goToLanguageComponent} />) : null}
+          {activeItem === "Languages" ? (<LanguageAdd goToAbilityComponent={goToAbilityComponent} goToPersonalComponent={goToPersonalComponent} />) : null}
+          {activeItem === "Personal" ? (<PersonalAdd goToLanguageComponent={goToLanguageComponent} />) : null}
 
         </div>
   )

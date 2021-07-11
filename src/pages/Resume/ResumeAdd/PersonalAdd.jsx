@@ -4,7 +4,7 @@ import HrmsTextInput from '../../../utilities/customFormControls/HrmsTextInput';
 import HrmsTextArea from '../../../utilities/customFormControls/HrmsTextArea';
 import { Formik, Form } from 'formik';
 
-export default function PersonalAdd() {
+export default function PersonalAdd({goToLanguageComponent}) {
 
 
     const [fileInput, setFileInput] = useState()
@@ -78,7 +78,7 @@ export default function PersonalAdd() {
                     
                 <Button content='Languages' icon='left arrow' 
                   labelPosition='left' floated="left" style={{marginTop:"30px"}} 
-                  color="violet" />
+                  color="violet" onClick={goToLanguageComponent} />
 
             </Segment>
         </div>

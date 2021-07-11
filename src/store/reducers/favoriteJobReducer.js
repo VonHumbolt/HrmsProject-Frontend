@@ -18,7 +18,7 @@ export default function favoriteJobReducer(state = initialState, {type, payload}
             console.log(state)
             let filteredAdvert = state.favoriteJobs.filter((f) => f.advertId !== payload.advertId) 
             return {
-                filteredAdvert
+                favoriteJobs: filteredAdvert
             }
         case GET_FAVORITE:
             console.log(payload)
