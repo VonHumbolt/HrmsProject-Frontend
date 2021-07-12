@@ -45,8 +45,8 @@ export default function JobSeekerFavoriteAdverts() {
                 Favorite Job Advert
               </Header>
               <Header style={{textAlign:"center", border:"2px solid"}}>
-                  {selectedJobAdvert.jobDescription} <br />
-                  {"Deadline: " + new Date(selectedJobAdvert.deadline).toLocaleDateString()}
+                  {selectedJobAdvert?.jobDescription} <br />
+                  {"Deadline: " + new Date(selectedJobAdvert?.deadline).toLocaleDateString()}
               </Header>
               <Modal.Content>
                 <p style={{textAlign:"center", fontSize:"20px"}}>

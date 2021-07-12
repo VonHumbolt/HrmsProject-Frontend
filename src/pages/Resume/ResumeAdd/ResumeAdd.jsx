@@ -43,7 +43,6 @@ export default function ResumeAdd() {
 
   return (
         <div>
-    {console.log(jobSeekerResume)}
 
           <Step.Group size="tiny" >
               <Step
@@ -86,7 +85,7 @@ export default function ResumeAdd() {
           {activeItem === "Job Experiences" ? (<JobExperienceAdd goToSchoolComponent={goToSchoolComponent} goToAbilityComponent={goToAbilityComponent} />) : null}
           {activeItem === "Abilities" ? (<AbilityAdd goToJobExperienceComponent={goToJobExperienceComponent} goToLanguageComponent={goToLanguageComponent} />) : null}
           {activeItem === "Languages" ? (<LanguageAdd goToAbilityComponent={goToAbilityComponent} goToPersonalComponent={goToPersonalComponent} />) : null}
-          {activeItem === "Personal" ? (<PersonalAdd goToLanguageComponent={goToLanguageComponent} />) : null}
+          {activeItem === "Personal" ? (<PersonalAdd jobSeekerId={jobSeekerId} goToLanguageComponent={goToLanguageComponent} />) : null}
 
         </div>
   )

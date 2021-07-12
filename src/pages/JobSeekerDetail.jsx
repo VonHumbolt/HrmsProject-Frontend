@@ -40,7 +40,6 @@ export default function JobSeekerDetail() {
       <Header as="h2" textAlign="center">
         {jobSeeker.firstName} {jobSeeker.lastName}
       </Header>
-      {console.log(jobSeekerResume)}
       
       <Divider horizontal>
         <Header as="h4">{jobSeeker.jobPositionName}</Header>
