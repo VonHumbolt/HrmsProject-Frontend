@@ -98,7 +98,7 @@ export default function JobAdvertDetail() {
             </Table.Row>
           </Table.Body>
         </Table>
-        <Button color="violet">Başvur</Button>
+        <Button color="violet">Apply For The Job</Button>
       </Segment>
     </div>
   );
