@@ -4,28 +4,55 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project Images
 
+### UML Component Diagram
+<p align="center">
+<img src="public/images/uml_component_diagram.jpg">
+</p>
+
+### Job Adverts Page
+<p align="center">
+<img src="public/images/adverts.jpg">
+</p>
+
+### Job Advert Detail Page
+
+<p align="center">
+<img src="public/images/advert_detail.jpg">
+</p>
+
 ### Add Job Advert
 <p align="center">
-<img src="public/images/add_job.png">
+<img src="public/images/add_advert.jpg">
 </p>
 
-### Resume Page
+### Job Seekers Page
 <p align="center">
-<img src="public/images/cv.png">
+<img src="public/images/seekers.jpg">
 </p>
 
-### Employer Page
+### Job Seekers Favorite Job Adverts
+<p align="center">
+<img src="public/images/favorite_adverts.jpg">
+</p>
+
+### System Personnel Confirm Page
+<p align="center">
+<img src="public/images/confirmPage.jpg">
+</p>
+
+### Job Seeker CV
+<p align="center">
+<img src="public/images/resume.jpg">
+</p>
+
+### Job Seeker CV Update Page
+<p align="center">
+<img src="public/images/resume_update.jpg">
+</p>
 
 <p align="center">
-<img src="public/images/employer_page.jpg">
+<img src="public/images/resume_update2.jpg">
 </p>
-
-### UML Component Diagram 
-<p align="center">
-<img src="public/images/uml_diagram.jpg" width="600" height="300">
-</p>
-
-
 
 ## Available Scripts
 
