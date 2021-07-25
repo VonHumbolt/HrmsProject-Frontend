@@ -1,16 +1,23 @@
 import { useFormik } from 'formik'
-import React from 'react'
-import { Card, Container, Button, Form } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react'
+import { Container, Menu } from 'semantic-ui-react'
+import EmployerRegisterPage from './EmployerRegisterPage'
+import JobSeekerRegisterPage from './JobSeekerRegisterPage'
 
 export default function Register() {
+
+    const [active, setActive] =  useState("personal")
+
 
     const formik = useFormik({
         initialValues: {
             firstName: "",
             lastName: "",
             email: "",
-            password: ""
+            dateOfBorn: "",
+            nationalIdentity:"",
+            password: "",
+            confirmPassword:""
         },
         onSubmit: values => {
             console.log(values)
@@ -19,38 +26,27 @@ export default function Register() {
 
     return (
         <div>
-            <Container>
+            
+            <Container style={{width:"600px"}}>
 
-                <Card centered style={{height:"450px", width:"600px"}}>      
-                    <Card.Content>
-                        <Card.Header style={{marginTop: "10px", marginBottom:"30px"}}><h1>Create an account</h1></Card.Header>
-                        <Card.Description>
-                            <Form onSubmit={formik.handleSubmit}>
-                                <Form.Field style={{marginBottom:"20px"}}>
-                                            
-                                    <Form.Input name="firstName" type="text" onChange={formik.handleChange} icon="user" iconPosition="left" required placeholder='First Name' />
-                                </Form.Field>
-                                <Form.Field style={{marginBottom:"20px"}}>
-                                    <Form.Input name="lastName" type="text" onChange={formik.handleChange} icon="user" iconPosition="left" required placeholder='Last Name' />
-                                </Form.Field>
-                                <Form.Field style={{marginBottom:"20px"}}>
-                                    <Form.Input name="email" type="email" onChange={formik.handleChange} icon="mail" iconPosition="left" required placeholder='Email' />
-                                </Form.Field>
-                                <Form.Field style={{marginBottom:"30px"}}>
-                                    <Form.Input name="password" type="password" onChange={formik.handleChange} icon="lock" iconPosition="left" required placeholder='Password' />
-                                </Form.Field>
-
-                                <Button fluid type='submit' color="violet" style={{marginBottom:"30px"}}>Register</Button>
-                                
-                                Already have an account? <Link to="/login">Login</Link>              
-                            </Form>
-
-                        </Card.Description>
-                    </Card.Content>
-                    
-                </Card>
-
+                <Menu attached='top' tabular borderless>
+                    <Menu.Item
+                        name='personal'
+                        active={active === 'personal'}
+                        onClick={() => setActive("personal")}
+                    />
+                    <Menu.Item
+                        name='company'
+                        active={active === 'company'}
+                        onClick={() => setActive("company")}
+                    />
+                </Menu>
             </Container>
+
+            {active === "personal" ? <JobSeekerRegisterPage/> : null}
+            {active === "company" ? <EmployerRegisterPage/> : null}
+
+            
 
         </div>
     )

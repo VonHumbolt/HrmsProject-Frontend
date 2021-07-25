@@ -105,7 +105,7 @@ export default function ResumeDetail() {
               <Segment style={{ marginTop: "30px" }}>
                 <Grid>
                   {resume.jobExperiences?.map((jobExperience) => (
-                    <Grid.Row>
+                    <Grid.Row key={jobExperience.jobExperienceId}>
                       <Grid.Column width={5}>
                         {jobExperience.startYear}-{jobExperience.endYear}
                       </Grid.Column>

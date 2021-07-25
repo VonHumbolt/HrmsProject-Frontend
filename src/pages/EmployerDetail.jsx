@@ -59,7 +59,7 @@ export default function EmployerDetail() {
             </Header>
             <ul>      
                 <li>
-                  <b> {employer.user?.email} </b>
+                  <b> {employer.email} </b>
                 </li> 
                 <li>
                   <b> {employer.phoneNumber} </b>
@@ -72,7 +72,7 @@ export default function EmployerDetail() {
              Waiting for approval for update
           </Label>
        ) : (
-        <Button color="violet" style={{marginTop:"20px"}} as={NavLink} to={`/employers/update/${employer.employerId}`}>Update Employer Information</Button>
+        <Button color="violet" style={{marginTop:"20px"}} as={NavLink} to={`/employers/update/${employer.userId}`}>Update Employer Information</Button>
        )}
       </Segment>
     </div>

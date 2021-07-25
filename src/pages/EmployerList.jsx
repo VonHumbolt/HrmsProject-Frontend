@@ -41,10 +41,10 @@ export default function EmployerList() {
 
           <Table.Body>
             {employers.map((employer) => (
-              <Table.Row key={employer.employerId}>
-                <Table.Cell style={{marginLeft:"10px"}} as={NavLink} to={`employers/${employer.employerId}`}>{employer.companyName}</Table.Cell>
+              <Table.Row key={employer.userId}>
+                <Table.Cell style={{marginLeft:"10px"}} as={NavLink} to={`employers/${employer.userId}`}>{employer.companyName}</Table.Cell>
                 <Table.Cell>{employer.webSite}</Table.Cell>
-                <Table.Cell>{employer.user?.email}</Table.Cell>
+                <Table.Cell>{employer.email}</Table.Cell>
                 <Table.Cell>{employer.phoneNumber}</Table.Cell>
               </Table.Row>
             ))}

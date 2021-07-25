@@ -39,7 +39,7 @@ export default function EmployerUpdate() {
   }
 
   const initialValue = {
-    employerId: employerId,
+    userId: employerId,
     newCompanyName: "",
     newWebSite: "",
     newEmail:"",
@@ -104,7 +104,7 @@ export default function EmployerUpdate() {
                 </Header>
                 <ul>
                   <li>
-                        <HrmsTextInput name="newEmail" label="Email" placeholder={employer.user?.email} />
+                        <HrmsTextInput name="newEmail" label="Email" placeholder={employer.email} />
                   </li>
                   <li style={{marginTop:"20px"}}>
                         <HrmsTextInput name="newPhoneNumber" label="Phone Number" placeholder={employer.phoneNumber} />

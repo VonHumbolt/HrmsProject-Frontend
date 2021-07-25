@@ -9,9 +9,9 @@ export default function HrmsTextInput({...props}) {
     return (
         <FormField error={meta.touched && !!meta.error}>
 
-            <label>
+            <label style={{textAlign:"left"}}>
                 {props.label}  
-                <Icon name={props.icon} />
+                <Icon style={{marginLeft:"5px"}} name={props.icon} />
             </label>
             <Field as={props.control} {...field} {...props} />
             {meta.touched && !!meta.error ? (

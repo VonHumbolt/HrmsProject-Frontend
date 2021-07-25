@@ -15,7 +15,7 @@ export default function JobPositionList() {
             <Divider />
             <Card.Group>
                 {jobPositions.map((jobPosition) => (
-                    <Card fluid color='green' header={jobPosition.jobPositionName} />
+                    <Card fluid color='green' header={jobPosition.jobPositionName} key={jobPosition.jobPositionId} />
                 ))}
                 
             </Card.Group>

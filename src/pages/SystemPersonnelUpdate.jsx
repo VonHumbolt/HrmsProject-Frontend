@@ -8,6 +8,7 @@ import SystemPersonnelService from '../services/systemPersonnelService';
 export default function SystemPersonnelUpdate() {
 
     const initialValues = {
+        userId: "",
         firstName: "", 
         lastName: "",
         email: ""

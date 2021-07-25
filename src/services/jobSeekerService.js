@@ -9,8 +9,8 @@ export default class JobSeekerService{
         return axios.get("http://localhost:8080/api/jobSeekers/getJobSeekerDtoByJobSeekerId?jobSeekerId="+jobSeekerId)
     }
 
-    add(jobSeeker) {
-        return axios.post("http://localhost:8080/api/jobSeekers/add",jobSeeker)
+    add(jobSeekerForRegister) {
+        return axios.post("http://localhost:8080/api/jobSeekers/add",jobSeekerForRegister)
     }
 
     uploadImage(image) {

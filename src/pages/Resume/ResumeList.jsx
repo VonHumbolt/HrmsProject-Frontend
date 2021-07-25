@@ -46,7 +46,7 @@ export default function ResumeList() {
                   </Header>
                   <List
                     as={NavLink}
-                    to={`/resumes/${resume.jobSeeker?.jobSeekerId}`}
+                    to={`/resumes/${resume.jobSeeker?.userId}`}
                   >
                     <List.Item as="a">
                       <List.Content>
