@@ -19,6 +19,7 @@ import EmployerUpdate from '../pages/EmployerUpdate'
 import ConfirmPage from '../pages/ConfirmPage'
 import JobSeekerFavoriteAdverts from '../pages/JobSeekerFavoriteAdverts'
 import SystemPersonnelUpdate from '../pages/SystemPersonnelUpdate'
+import Profile from '../pages/Profile'
 
 export default function Dashboard() {
     return (
@@ -47,6 +48,7 @@ export default function Dashboard() {
                         <Route exact path="/confirmPage" component={ConfirmPage} />
                         <Route exact path="/favoriteJobAdverts" component={JobSeekerFavoriteAdverts} />
                         <Route exact path="/systemPersonnel/update" component={SystemPersonnelUpdate} />
+                        <Route exact path="/profile/" component={Profile} />
 
                     </Grid.Column>
              </Grid.Row>

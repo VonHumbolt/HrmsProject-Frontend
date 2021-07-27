@@ -288,7 +288,7 @@ export default function JobAdvertList() {
                 <b>Work Place:</b> {jobAdvert.workPlace?.workPlaceName}
               </Card.Description>
               <Card.Description>
-                <b>Deadline:</b> {jobAdvert.deadline}
+                <b>Deadline:</b> { new Date(jobAdvert.deadline).toLocaleDateString()}
               </Card.Description>
             </Card.Content>
           </Card>

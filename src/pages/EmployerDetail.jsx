@@ -75,6 +75,7 @@ export default function EmployerDetail() {
         <Button color="violet" style={{marginTop:"20px"}} as={NavLink} to={`/employers/update/${employer.userId}`}>Update Employer Information</Button>
        )}
       </Segment>
+
     </div>
   );
 }

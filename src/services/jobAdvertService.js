@@ -3,7 +3,7 @@ import axios from "axios"
 export default class JobAdvertService{
 
     getAllJobAdvertByPage(pageNo, pageSize=10) {
-        return axios.get("http://localhost:8080/api/jobAdverts/getAllByPage?pageNo=" + pageNo + "&pageSize=" + pageSize)
+        return axios.get("http://localhost:8080/api/jobAdverts/getAllActiveJobAdvertsAsPageable?pageNo=" + pageNo + "&pageSize=" + pageSize)
     }
 
     getJobAdvertByAdvertId(advertId) {
