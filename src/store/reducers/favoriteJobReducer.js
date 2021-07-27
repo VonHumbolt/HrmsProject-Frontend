@@ -15,13 +15,11 @@ export default function favoriteJobReducer(state = initialState, {type, payload}
             }
 
         case DELETE_FAVORITE:
-            console.log(state)
             let filteredAdvert = state.favoriteJobs.filter((f) => f.advertId !== payload.advertId) 
             return {
                 favoriteJobs: filteredAdvert
             }
         case GET_FAVORITE:
-            console.log(payload)
             return {
                 ...state,
                 favoriteJobs: payload
@@ -31,11 +29,14 @@ export default function favoriteJobReducer(state = initialState, {type, payload}
     }
 }
 
-export async function getAllFavorites(dispatch, getState) {
-    await axios.get("http://localhost:8080/api/favoriteJobAdverts/getFavoriteJobAdvertByJobSeekerId?jobSeekerId=1").then(
-        response => dispatch({type:GET_FAVORITE, payload: response.data.data})
-       
-    )
+export function getAllFavorites(user){
+    return async function getAll(dispatch, getState) {
+        await axios.get("http://localhost:8080/api/favoriteJobAdverts/getFavoriteJobAdvertByJobSeekerId?jobSeekerId="+user.userId).then(
+            response => dispatch({type:GET_FAVORITE, payload: response.data.data})
+           
+        )
+    }
+    
 }
 
 export function saveJobAdvertToFavorite(jobAdvert) {

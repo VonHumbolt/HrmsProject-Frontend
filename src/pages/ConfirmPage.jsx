@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Menu, Segment } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 import ConfirmEmployerUpdate from "./ConfirmEmployerUpdate";
 import ConfirmJobAdverts from "./ConfirmJobAdverts";
 

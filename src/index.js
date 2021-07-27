@@ -12,7 +12,7 @@ import { getAllFavorites } from './store/reducers/favoriteJobReducer';
 
 const store = configureStore()
 
-store.dispatch(getAllFavorites)
+//store.dispatch(getAllFavorites)
 
 ReactDOM.render(
    <Provider store={store}>

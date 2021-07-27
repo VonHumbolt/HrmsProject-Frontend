@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JobAdvertService from "../services/jobAdvertService";
 import { Divider, Header, Icon, Table, Button, Segment} from "semantic-ui-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveJobAdvertToFavorite, deleteJobAdvertToFavorite } from "../store/reducers/favoriteJobReducer";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -10,6 +10,8 @@ export default function JobAdvertDetail() {
   let { advertId } = useParams();
 
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user)
 
   const [isFavorite, setIsFavorite] = useState(false)
 
@@ -27,6 +29,8 @@ export default function JobAdvertDetail() {
 
     }else {
       toast.success("Job Advert is added into favorites")
+      
+      jobAdvert.jobSeekerId = user.userInfo.userId
       dispatch(saveJobAdvertToFavorite(jobAdvert))
     }
 

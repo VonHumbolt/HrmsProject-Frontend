@@ -16,15 +16,15 @@ export default function userInfoReducer(state=initialState, {type, payload}){
             }else {
                 return {
                     ...state, 
-                    userInfo: {...state.userInfo, payload}
+                    userInfo: {...payload}
                 }
             }
         
-        case DELETE_USER_INFO: 
-            if(userInfo.userId === payload.userId) {
-                return {
-                    
-                }
+        case DELETE_USER_INFO:  
+            let newUserInfo = {}
+            return {
+                ...state,
+                userInfo: newUserInfo
             }
 
         default:

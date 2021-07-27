@@ -1,21 +1,28 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import { Container, Icon, Menu } from "semantic-ui-react";
 import SignedOut from "./SignedOut";
 import SignedIn from "./SignedIn";
 import FavoriteJobAdverts from "./FavoriteJobAdverts";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUserInfo } from "../store/actions/actions";
 
 export default function Navi() {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const user =  useSelector(state => state.user)
+
+  const dispatch = useDispatch()
+
+  const history = useHistory();
 
   function handleSignIn() {
-    setIsAuthenticated(true)
+    history.push("/login")
   }
 
   function handleSignOut() {
-    setIsAuthenticated(false)
+    dispatch(deleteUserInfo(user.userInfo))
   }
+
   return (
     <div>
       <Menu stackable inverted>
@@ -32,8 +39,8 @@ export default function Navi() {
           <Menu.Item as={NavLink} to="/resumes" name="testimonials">Resumes</Menu.Item>
 
           <Menu.Menu position="right">
-            {isAuthenticated ? <SignedIn signedOut={handleSignOut} /> : <SignedOut signedIn={handleSignIn} /> }
-            {isAuthenticated ? <FavoriteJobAdverts/>: null }
+            {user.userInfo.userId !== undefined ? <SignedIn signedOut={handleSignOut} /> : <SignedOut signedIn={handleSignIn} /> }
+            {user.userInfo.userId !== undefined ? <FavoriteJobAdverts/>: null }
 
             
           </Menu.Menu>

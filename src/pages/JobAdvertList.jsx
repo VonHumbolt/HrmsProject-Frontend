@@ -21,6 +21,7 @@ import HrmsSelect from "../utilities/customFormControls/HrmsSelect";
 import HrmsTextInput from "../utilities/customFormControls/HrmsTextInput";
 import HrmsTextArea from "../utilities/customFormControls/HrmsTextArea";
 import { toast, ToastContainer} from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function JobAdvertList() {
 
@@ -33,6 +34,8 @@ export default function JobAdvertList() {
   const [cities, setCities] = useState([])
   const [copyOfJobAdvertsState, setCopyOfJobAdvertsState] = useState([])
   const [pageSize, setPageSize] = useState(10)
+
+  const user = useSelector(state => state.user)
 
   useEffect(() => {
     jobAdvertService
@@ -56,6 +59,9 @@ export default function JobAdvertList() {
   }, [])
 
   const initialValues = {
+      employer: {
+        userId: user.userInfo.userId
+      },
       jobPosition: {
             jobPositionId:0,
           },

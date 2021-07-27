@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Divider, Header, Icon, Table, Segment } from "semantic-ui-react";
 import EmployerService from "../services/employerService";
 
 export default function EmployerList() {
   const [employers, setEmployers] = useState([]);
-
-  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     let employerService = new EmployerService();
